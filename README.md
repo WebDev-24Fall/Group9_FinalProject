@@ -75,7 +75,7 @@ This project is a web-based platform designed to showcase products, allow users 
 
 1. **Clone the repository**:
    ```bash
-   git clone [https://github.com/your-repo-url](https://github.com/WebDev-24Fall/Group9_FinalProject.git)
+   git clone https://github.com/WebDev-24Fall/Group9_FinalProject.git
    ```
 
 2. **Configure the database**:
