@@ -18,12 +18,6 @@ namespace Group9_FinalProject.Data
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin"),
                     Role = "Admin"
                 });
-                context.Users.Add(new User
-                {
-                    Username = "ygu4492",
-                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("8904492"),
-                    Role = "Admin"
-                });
             }
 
             if (!context.Products.Any())
