@@ -1,8 +1,38 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<dynamic>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<link rel="stylesheet" href="~/css/home.css" />
+
+<div class="banner">
+    <div class="banner-content text-center text-white">
+        <h1>Welcome to Our Grocery Store</h1>
+    </div>
 </div>
+
+<h1 class="text-center mt-3 mb-4">All Products</h1>
+
+@foreach (var categoryGroup in Model)
+{
+    <div class="mb-5">
+        <h2 class="text-primary">@categoryGroup.Category</h2>
+        <div class="row">
+            @foreach (var product in categoryGroup.Products)
+            {
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="@product.ImageURL" class="card-img-top" alt="@product.Name">
+                        <div class="card-body">
+                            <h5 class="card-title">@product.Name</h5>
+                            <p class="card-text text-muted">@product.Price.ToString("C")</p>
+                            <a href="/home/productdetails/@product.ProductID" class="btn btn-primary btn-sm">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
