@@ -15,7 +15,7 @@
             <p>@Model.Description</p>
             <p><strong>Stock Available:</strong> @Model.StockQuantity</p>
 
-            <form method="post" action="/cart/add">
+            <form method="post" action="@Url.Action("AddToCart", "Cart")">
                 <input type="hidden" name="ProductID" value="@Model.ProductID" />
                 <div class="form-group">
                     <label for="quantity">Quantity:</label>
