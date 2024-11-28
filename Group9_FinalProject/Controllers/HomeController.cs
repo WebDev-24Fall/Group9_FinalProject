@@ -31,6 +31,7 @@ namespace Group9_FinalProject.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            // Group products by category for the index view
             var productsByCategory = await _context.Products
                 .GroupBy(p => p.Category)
                 .Select(group => new
@@ -45,11 +46,17 @@ namespace Group9_FinalProject.Controllers
         [HttpGet]
         public async Task<IActionResult> ProductDetails(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            // Fetch the product details by ID
+            var product = await _context.Products
+                .FirstOrDefaultAsync(p => p.ProductID == id);
+
             if (product == null)
             {
+                // Log an error and return a 404 if the product is not found
+                _logger.LogWarning("Product with ID {ProductId} not found.", id);
                 return NotFound();
             }
+
             return View(product);
         }
     }
