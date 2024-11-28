@@ -82,6 +82,7 @@ This project is a web-based platform designed to showcase products, allow users 
    - Update the connection string in `appsettings.json` to point to your SQL Server instance.
    - Run migrations to create the database:
      ```bash
+     Add-Migration InitialData
      Update-Database
      ```
 
