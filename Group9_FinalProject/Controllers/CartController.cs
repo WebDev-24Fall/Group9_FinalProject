@@ -127,6 +127,51 @@ namespace Group9_FinalProject.Controllers
 
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public IActionResult Checkout()
+        {
+            // Retrieve the cart from session
+            var cart = HttpContext.Session.GetObjectFromJson<Cart>("Cart") ?? new Cart();
 
+            // Pass the cart to the view
+            return View("~/Views/Home/Checkout.cshtml");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Checkout(string Name, string Address, string Phone)
+        {
+            var cart = HttpContext.Session.GetObjectFromJson<Cart>("Cart");
+
+            if (cart == null || !cart.Items.Any())
+            {
+                // If the cart is empty, redirect back to the cart page
+                ModelState.AddModelError("", "Your cart is empty.");
+                return RedirectToAction("Index");
+            }
+
+            // Simulate order creation (you can save it to the database if needed)
+            var order = new Order
+            {
+                CustomerName = Name,
+                CustomerAddress = Address,
+                CustomerPhone = Phone,
+                OrderDate = DateTime.Now,
+                TotalAmount = cart.Total,
+                Status = "Processing"
+            };
+
+            // Clear the cart
+            HttpContext.Session.Remove("Cart");
+
+            // Redirect to the Order Confirmation page
+            return RedirectToAction("OrderConfirmation", new { customerName = Name });
+        }
+        [HttpGet]
+        public IActionResult OrderConfirmation(string customerName)
+        {
+            ViewBag.CustomerName = customerName;
+            return View("~/Views/Home/OrderConfirmation.cshtml");
+        }
     }
+
 }

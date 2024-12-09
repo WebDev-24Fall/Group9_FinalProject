@@ -1,0 +1,20 @@
+﻿<form method="post" action="/Cart/Checkout" class="container mt-5">
+    <h2 class="mb-4">Shipping Information</h2>
+
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <input type="text" id="Name" name="Name" class="form-control" placeholder="Enter your name" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="Address" class="form-label">Address</label>
+        <textarea id="Address" name="Address" class="form-control" placeholder="Enter your address" rows="3" required></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="Phone" class="form-label">Phone</label>
+        <input type="text" id="Phone" name="Phone" class="form-control" placeholder="Enter your phone number" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Place Order</button>
+</form>
